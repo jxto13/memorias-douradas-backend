@@ -36,23 +36,13 @@ const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
 const plugins = [
   `medusa-fulfillment-manual`,
   `medusa-payment-manual`,
-  `medusa-plugin-nodemailer`,
+  // `medusa-plugin-nodemailer`,
   // To enable the admin plugin, uncomment the following lines and run `yarn add @medusajs/admin`
   {
     resolve: "@medusajs/admin",
     /** @type {import('@medusajs/admin').PluginOptions} */
     options: {
       autoRebuild: true,
-    },
-  },
-  // Public bucket
-  {
-    resolve: `medusa-file-minio`,
-    options: {
-        endpoint: process.env.MINIO_ENDPOINT,
-        bucket: process.env.MINIO_BUCKET,
-        access_key_id: process.env.MINIO_ACCESS_KEY,
-        secret_access_key: process.env.MINIO_SECRET_KEY,
     },
   },
   {
@@ -81,8 +71,8 @@ const plugins = [
             ],
           },
           primaryKey: "id",
-          transformer: (product) => ({
-            id: product.id, 
+          transformer: (products) => ({
+            id: products.id, 
             // other attributes...
           }),
         },
