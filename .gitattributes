@@ -1,0 +1,2 @@
+medusa-config.js merge=ours
+# git config --global merge.ours.driver true

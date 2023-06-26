@@ -9,6 +9,7 @@ COPY package.json yarn.lock ./
 RUN yarn add @medusajs/admin
 RUN yarn add medusa-plugin-meilisearch
 RUN yarn add nodemailer
+RUN yarn add medusa-file-minio
 
 # Copy and install custom plugin
 # COPY custom-plugins custom-plugins
