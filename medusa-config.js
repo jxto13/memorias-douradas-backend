@@ -29,7 +29,7 @@ const ADMIN_CORS =
 const STORE_CORS = process.env.STORE_CORS || "http://localhost:8000";
 
 const DATABASE_URL =
-  process.env.DATABASE_URL || "postgres://localhost/medusa-store";
+  process.env.DATABASE_URL || "postgres://localhost/medusa-starter-default";
 
 const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
 
@@ -43,6 +43,9 @@ const plugins = [
     /** @type {import('@medusajs/admin').PluginOptions} */
     options: {
       autoRebuild: true,
+      develop: {
+        open: process.env.OPEN_BROWSER !== "false",
+      },
     },
   },
   {
@@ -98,8 +101,8 @@ const modules = {
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
 const projectConfig = {
-  jwtSecret: process.env.JWT_SECRET,
-  cookieSecret: process.env.COOKIE_SECRET,
+  jwt_secret: process.env.JWT_SECRET || "supersecret",
+  cookie_secret: process.env.COOKIE_SECRET || "supersecret",
   store_cors: STORE_CORS,
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
